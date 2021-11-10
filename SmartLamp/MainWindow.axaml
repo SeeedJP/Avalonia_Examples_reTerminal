@@ -1,0 +1,55 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="1280" d:DesignHeight="720"
+        x:Class="SmartLamp.MainWindow"
+        Title="SmartLamp"
+		WindowState="Maximized">
+
+	<Window.Styles>
+		<Style Selector="Button">
+			<Setter Property="Width" Value="200"/>
+			<Setter Property="Height" Value="200"/>
+			<Setter Property="HorizontalContentAlignment" Value="Center"/>
+			<Setter Property="VerticalContentAlignment" Value="Center"/>
+			<Setter Property="FontSize" Value="40"/>
+			<Setter Property="Margin" Value="10"/>
+			<Style.Animations>
+				<Animation Duration="0:0:3">
+					<KeyFrame Cue="0%">
+						<Setter Property="Opacity" Value="0.0"/>
+					</KeyFrame>
+					<KeyFrame Cue="50%">
+						<Setter Property="Opacity" Value="0.0"/>
+					</KeyFrame>
+					<KeyFrame Cue="100%">
+						<Setter Property="Opacity" Value="1.0"/>
+					</KeyFrame>
+				</Animation>
+			</Style.Animations>
+		</Style>
+		<Style Selector="Image">
+			<Style.Animations>
+				<Animation Duration="0:0:3">
+					<KeyFrame Cue="0%">
+						<Setter Property="Opacity" Value="0.0"/>
+					</KeyFrame>
+					<KeyFrame Cue="100%">
+						<Setter Property="Opacity" Value="1.0"/>
+					</KeyFrame>
+				</Animation>
+			</Style.Animations>
+		</Style>
+	</Window.Styles>
+
+	<RelativePanel>
+		<Image Classes="logo" Source="avares://SmartLamp/Assets/SeeedLogo.png" Height="120" Margin="10" RelativePanel.AlignRightWithPanel="True"/>
+		<StackPanel Orientation="Horizontal" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True">
+			<Button Click="TurnOnButtonClick">ON</Button>
+			<Image Name="LampImage" Width="400"/>
+			<Button Click="TurnOffButtonClick">OFF</Button>
+		</StackPanel>
+	</RelativePanel>
+
+</Window>
