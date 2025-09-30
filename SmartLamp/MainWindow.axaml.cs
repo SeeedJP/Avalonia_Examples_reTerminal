@@ -10,12 +10,10 @@ namespace SmartLamp
 {
     public partial class MainWindow : Window
     {
-        private IHardwareService HardwareService;
+        private IHardwareService HardwareService = null!;
 
-        private Image LampImage;
-
-        private Bitmap LampOnBitmap;
-        private Bitmap LampOffBitmap;
+        private Bitmap LampOnBitmap = null!;
+        private Bitmap LampOffBitmap = null!;
 
         public MainWindow()
         {
@@ -36,12 +34,11 @@ namespace SmartLamp
             else
                 this.HardwareService = new RasPiHardwareService();
 
-            var assets = AvaloniaLocator.Current.GetService<IAssetLoader>();
-            this.LampOnBitmap = new Bitmap(assets.Open(new Uri("avares://SmartLamp/Assets/LampOn.png")));
-            this.LampOffBitmap = new Bitmap(assets.Open(new Uri("avares://SmartLamp/Assets/LampOff.png")));
+            this.LampOnBitmap = new Bitmap(AssetLoader.Open(new Uri("avares://SmartLamp/Assets/LampOn.png")));
+            this.LampOffBitmap = new Bitmap(AssetLoader.Open(new Uri("avares://SmartLamp/Assets/LampOff.png")));
 
             this.HardwareService.SetLamp(false);
-            this.LampImage.Source = this.LampOffBitmap;
+            this.LampImage!.Source = this.LampOffBitmap;
         }
 
         private void TurnOnButtonClick(object sender, RoutedEventArgs e)
